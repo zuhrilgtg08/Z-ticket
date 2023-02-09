@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardTiketController;
 use App\Http\Controllers\DashboardReviewsController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardAccountUserController;
+use App\Http\Controllers\DashboardHotelController;
 use App\Http\Controllers\DashboardOrderanUserController;
 
 /*
@@ -44,6 +45,8 @@ Route::resource('data_account', DashboardAccountUserController::class)->middlewa
 Route::resource('data_reviews', DashboardReviewsController::class)->middleware('admin');
 // Data Orders admin
 Route::resource('data_orders', DashboardOrderanUserController::class)->middleware('admin');
+// Data Hotel Admin
+Route::resource('data_hotel', DashboardHotelController::class)->middleware('admin');
 // Route Admin Profile
 Route::get('/dashboard/admin/edit/{id}', [DashboardController::class, 'editProfile'])->name('dashboard.editProfile')->middleware('admin');
 Route::put('/dashboard/admin/profile/update/{users:id}', [DashboardController::class, 'updateProfile'])->name('dashboard.updateProfile')->middleware('admin');

@@ -64,7 +64,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Bar Chart</h5>
+                <h5 class="card-title">Grafik Data 1</h5>
                 <!-- Bar Chart -->
                 <div id="barChart" style="min-height: 400px;" class="echart"></div>
             </div>
@@ -74,7 +74,7 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Line Chart</h5>
+                <h5 class="card-title">Grafik Data 2</h5>
                 <!-- Line Chart -->
                 <div id="lineChart" style="min-height: 400px;" class="echart"></div>
             </div>

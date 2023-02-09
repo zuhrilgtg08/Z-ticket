@@ -1,15 +1,37 @@
 @extends('layouts.dashboard.mainDashboard', ['isMaster' => true, 'isActive' => 'menu.tiket'])
-@section('content-dashboard')
-    <h2 class="h2 mb-3 text-black-50">Buat Data Tiket Baru</h2>
 
-    <div class="row justify-content-center">
-        <div class="col-lg-10 mb-4">
+@section('breadcumb')
+    <div class="pagetitle">
+        <h1>Tiket</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item">Master Data</li>
+                <li class="breadcrumb-item"><a href="/data_tiket">Tiket</a></li>
+                <li class="breadcrumb-item active">Create</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
+
+@section('content-dashboard')
+    <div class="row justify-content-center py-4">
+        <div class="col-lg-10">
             <div class="card shadow-inner border-0">
+                <div class="card-header mt-3">
+                    <div class="row justify-content-between">
+                        <div class="col-md-8">
+                            <h2 class="h2 text-black-50">Create Tiket</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-secondary btn-sm mb-4 float-end" href="{{ route('data_tiket.index') }}">
+                                <i class="bi bi-arrow-left"></i>
+                                Kembali
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <a class="btn btn-secondary btn-sm mb-4" href="{{ route('data_tiket.index') }}">
-                        <i class="fas fa-fw fa-arrow-left"></i>
-                        Kembali
-                        </a>
                     <form action="{{ route('data_tiket.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
@@ -36,7 +58,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="harga_tiket" class="form-label">Harga Tiket : </label>
-                                    <input class="form-control @error('harga') is-invalid @enderror" name="harga" type="number" id="harga_tiket"
+                                    <input class="form-control @error('harga') is-invalid @enderror input-harga" name="harga" type="number" id="harga_tiket"
                                         value="{{ old('harga') }}" min="1" required />
                                     @error('harga')
                                     <div class="invalid-feedback">
@@ -59,8 +81,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="provinsi" class="form-label">Provinsi Asal : </label>
-                                    <select name="provinsi_id" id="provinsi" class="form form-control @error('provinsi_id') is-invalid @enderror 
-                                                            data-provinsi" required>
+                                    <select name="provinsi_id" id="provinsi" class="form form-select @error('provinsi_id') is-invalid @enderror data-provinsi" required>
                                         <option value="" selected disabled>Data Provinsi</option>
                                         @foreach ($dataProKo as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_provinsi }}</option>
@@ -74,8 +95,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="kota" class="form-label">Kota Asal : </label>
-                                    <select name="kota_id" id="kota" class="form form-control @error('kota_id') is-invalid @enderror 
-                                                            data-kota" required>
+                                    <select name="kota_id" id="kota" class="form form-select @error('kota_id') is-invalid @enderror data-kota" required>
                                         <option value="">Data Kota/Kabupaten</option>
                                     </select>
                                     @error('kota_id')
@@ -86,8 +106,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="kategori" class="form-label">Kategori Tiket : </label>
-                                    <select name="category_id" id="kategori" class="form-control @error('category_id') is-invalid @enderror
-                                                            data-category" required>
+                                    <select name="category_id" id="kategori" class="form form-select @error('category_id') is-invalid @enderror data-category" required>
                                         <option value="" selected disabled>Pilih Kategori</option>
                                         @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->nama_kategori }}</option>
@@ -113,7 +132,7 @@
                         </div>
                         <div class="float-right mt-2">
                             <button type="submit" class="btn btn-success btn-sm">
-                                <i class="far fa-fw fa-save"></i> Simpan
+                                <i class="bi bi-save"></i> Simpan
                             </button>
                         </div>
                     </form>
@@ -125,6 +144,12 @@
 
 @section('script')
     <script>
+        $(document).ready(function() {
+            $('.data-provinsi').select2();
+            $('.data-kota').select2();
+            $('.data-category').select2();
+        });
+        
         $(document).ready(function() {
             $('.data-provinsi').change(function(){
                 let provinsiId = $(this).val();

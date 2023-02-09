@@ -1,26 +1,46 @@
 @extends('layouts.dashboard.mainDashboard', ['isMaster' => true, 'isActive' => 'menu.tiket'])
-@section('content-dashboard')
-<h2 class="h2 mb-3 text-black-50">Edit Data Tiket</h2>
 
-<div class="row justify-content-center">
-    <div class="col-lg-10 mb-4">
-        <div class="card shadow-inner border-0">
-            <div class="card-body">
-                <a class="btn btn-secondary btn-sm mb-4" href="{{ route('data_tiket.index') }}">
-                    <i class="fas fa-fw fa-arrow-left"></i>
-                    Kembali
-                </a>
-                
-                <form action="{{ route('data_tiket.update', $tiket->id) }}" method="POST" enctype="multipart/form-data">
+@section('breadcumb')
+    <div class="pagetitle">
+        <h1>Tiket</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item">Master Data</li>
+                <li class="breadcrumb-item"><a href="/data_tiket">Tiket</a></li>
+                <li class="breadcrumb-item active">Edit</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
+
+@section('content-dashboard')
+    <div class="row justify-content-center py-4">
+        <div class="col-lg-10">
+            <div class="card shadow-inner border-0">
+                <div class="card-header mt-3">
+                    <div class="row justify-content-between">
+                        <div class="col-md-8">
+                            <h2 class="h2 text-black-50">Edit Tiket</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-secondary btn-sm mb-4 float-end" href="{{ route('data_tiket.index') }}">
+                                <i class="bi bi-arrow-left"></i>
+                                Kembali
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('data_tiket.update', $tiket->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="nama_tiket" class="form-label">Nama Tiket : </label>
-                                <input class="form-control @error('nama_tiket') is-invalid @enderror" name="nama_tiket"
-                                    type="text" id="nama_tiket" value="{{ old('nama_tiket', $tiket->nama_tiket) }}"
-                                    required />
+                                <input class="form-control @error('nama_tiket') is-invalid @enderror" name="nama_tiket" type="text"
+                                    id="nama_tiket" value="{{ old('nama_tiket', $tiket->nama_tiket) }}" required />
                                 @error('nama_tiket')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -29,9 +49,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="stok_tiket" class="form-label">Stok Tiket : </label>
-                                <input class="form-control @error('stok') is-invalid @enderror" name="stok"
-                                    type="number" id="stok_tiket" value="{{ old('stok', $tiket->stok) }}" min="1"
-                                    required />
+                                <input class="form-control @error('stok') is-invalid @enderror" name="stok" type="number" id="stok_tiket"
+                                    value="{{ old('stok', $tiket->stok) }}" min="1" required />
                                 @error('stok')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -40,9 +59,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="harga_tiket" class="form-label">Harga Tiket : </label>
-                                <input class="form-control @error('harga') is-invalid @enderror" name="harga"
-                                    type="number" id="harga_tiket" value="{{ old('harga', $tiket->harga) }}" min="1"
-                                    required />
+                                <input class="form-control @error('harga') is-invalid @enderror" name="harga" type="number" id="harga_tiket"
+                                    value="{{ old('harga', $tiket->harga) }}" min="1" required />
                                 @error('harga')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -54,13 +72,13 @@
                                 <!-- hidden image tiket -->
                                 <input type="hidden" name="sampulLama" value="{{ $tiket->image }}">
                                 @if ($tiket->image)
-                                    <img src="{{ asset('storage/' . $tiket->image )}}" class="sampul-preview img-fluid mb-3 sm-2 d-block">
+                                <img src="{{ asset('storage/' . $tiket->image )}}" class="sampul-preview img-fluid mb-3 sm-2 d-block">
                                 @else
-                                    <img class="sampul-preview img-fluid mb-3 sm-2">
+                                <img class="sampul-preview img-fluid mb-3 sm-2">
                                 @endif
-
-                                <input type="file" class="form-control-file" @error('image') is-invalid @enderror
-                                    id="sampul_tiket" name="image" onchange="sampulTiket()">
+                    
+                                <input type="file" class="form-control-file" @error('image') is-invalid @enderror id="sampul_tiket"
+                                    name="image" onchange="sampulTiket()">
                                 @error('image')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -102,7 +120,7 @@
                             <div class="mb-3">
                                 <label for="kategori" class="form-label">Kategori Tiket : </label>
                                 <select name="category_id" id="kategori" class="form-control @error('category_id') is-invalid @enderror
-                                    data-category" required>
+                                                        data-category" required>
                                     <option value="" selected disabled>Pilih Kategori</option>
                                     @foreach ($categories as $category)
                                     <option value="{{ old('category_id', $category->id) }}" @if ($category->id ==
@@ -124,25 +142,31 @@
                         <input type="hidden" class="form-control @error('deskripsi_tiket') is-invalid @enderror" id="deskripsi_tiket"
                             name="deskripsi_tiket" required value="{{ old('deskripsi_tiket', $tiket->deskripsi_tiket) }}">
                         @error('deskripsi_tiket')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                        
+                    
                         <trix-editor input="deskripsi_tiket"></trix-editor>
                     </div>
                     <div class="float-right mt-2">
                         <button type="submit" class="btn btn-success btn-sm">
-                            <i class="far fa-fw fa-save"></i> Simpan
+                            <i class="bi bi-save"></i> Simpan
                         </button>
                     </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('script')
     <script>
+        $(document).ready(function() {
+            $('.data-provinsi').select2();
+            $('.data-kota').select2();
+            $('.data-category').select2();
+        });
+        
         $(document).ready(function() {
             $('.data-provinsi').change(function(){
                 let provinsiId = $(this).val();
