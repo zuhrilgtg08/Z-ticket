@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="{{ isset($isActive) && $isActive === 'menu.account' ? 'active' : '' }}">
+                    <a href="{{ route('data_account.index') }}" class="{{ isset($isActive) && $isActive === 'menu.account' ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Account Users</span>
                     </a>
                 </li>

@@ -52,7 +52,7 @@
                         <li class="list-group-item">Harga : <span class="badge text-bg-success">@harga($tiket->harga)</span></li>
                         <li class="list-group-item">Stok : <span class="badge text-bg-dark">{{ $tiket->stok }}</span></li>
                         <li class="list-group-item">Provinsi : <span class="text-danger fw-bolder">{{ $tiket->provinsi->nama_provinsi }}</span></li>
-                        <li class="list-group-item">Kota : <span class="text-muted">{{ $tiket->kota->nama_kota }}</span></li>
+                        <li class="list-group-item">Kota : <span class="badge text-bg-primary">{{ $tiket->kota->nama_kota }}</span></li>
                         <li class="list-group-item">Kategori : <span class="badge text-bg-warning">{{ $tiket->category->nama_kategori }}</span></li>
                     </ul>
                 </div>

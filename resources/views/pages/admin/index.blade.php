@@ -38,7 +38,7 @@
                         <i class="bi bi-building"></i>
                     </div>
                     <div class="ps-3">
-                        <h3>0 Data</h3>
+                        <h3>{{ $hotel->count() }} Data</h3>
                     </div>
                 </div>
             </div>

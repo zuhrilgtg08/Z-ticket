@@ -57,29 +57,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @php $nomor = 1; @endphp
-                        @foreach ($tikets as $item)
+                        @php $nomor = 1; @endphp
+                        @foreach ($dataHotel as $item)
                         <tr>
                             <td>{{ $nomor++ }}</td>
-                            <td>{{ $item->kode_tiket }}</td>
-                            <td>{{ $item->nama_tiket }}</td>
+                            <td>{{ $item->kode_hotel }}</td>
+                            <td>{{ $item->nama_hotel }}</td>
                             <td>
-                                @if ($item->image)
-                                <img src="{{ asset('storage/' . $item->image )}}" class="img-fluid" width="100"
-                                    alt="sampul">
+                                @if ($item->image_hotel)
+                                <img src="{{ asset('storage/' . $item->image_hotel)}}" class="img-fluid" width="100"
+                                    alt="gambar">
                                 @else
-                                <img src="{{ asset('assets/img/blank-tiket.webp') }}" alt="blank-tiket" class="img-fluid"
+                                <img src="{{ asset('assets/img/blank-hotel.webp') }}" alt="blank-hotel" class="img-fluid"
                                     width="100">
                                 @endif
                             </td>
-                            <td>{{ $item->stok }} Tiket</td>
-                            <td>@harga($item->harga)</td>
+                            <td>{{ $item->tiket->nama_tiket }}</td>
+                            <td>@harga($item->harga_hotel)</td>
                             <td>
-                                <a href="{{ route('data_tiket.show', $item->id) }}" class="btn btn-primary btn-sm">
+                                <a href="{{ route('data_hotel.show', $item->id) }}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-info-lg"></i></a>
-                                <a href="{{ route('data_tiket.edit', $item->id) }}" class="btn btn-secondary btn-sm"><i
+                                <a href="{{ route('data_hotel.edit', $item->id) }}" class="btn btn-secondary btn-sm"><i
                                         class="bi bi-pencil-square"></i></a>
-                                <form action="{{ route('data_tiket.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('data_hotel.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm sweet-delete">
@@ -88,10 +88,34 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+    $('.sweet-delete').click(function(event){
+            var form = $(this).closest("form");
+            event.preventDefault();
+            Swal.fire({
+                title: 'Hapus Hotel?',
+                text: "Anda Yakin Ingin Menghapusnya!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+            }).then((result) => {
+                setTimeout(() => {
+                    if(result.isConfirmed) {
+                        form.submit();
+                    }
+                }, 500);
+            });
+        });
+</script>
 @endsection

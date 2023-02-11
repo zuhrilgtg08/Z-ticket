@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kota;
 use App\Models\User;
+use App\Models\Hotel;
 use App\Models\Tiket;
 use App\Models\Review;
 use App\Models\Pesanan;
@@ -23,7 +24,8 @@ class DashboardController extends Controller
             'reviews' => Review::all(),
             'provinsi' => Provinsi::all(),
             'kota' => Kota::all(),
-            'pesanans' => Pesanan::all()
+            'pesanans' => Pesanan::all(),
+            'hotel' => Hotel::all()
         ];
 
         $data1 = [

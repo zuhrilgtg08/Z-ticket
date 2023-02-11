@@ -1,19 +1,30 @@
 @extends('layouts.frontend.mainFrontend')
+@section('style')
+    <style>
+        .categories:hover {
+            transform: scale(1.1);
+            transition: all ease .5s;
+        }
+    </style>
+@endsection
 @section('content')
-    <section class="bg-secondary py-5">
+    <section class="bg-secondary">
         <div class="container">
-            <div class="row align-items-center py-5">
-                <div class="col-md-8 text-white">
-                    <h1>Categories</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                </div>
-                <div class="col-md-4">
-                    <img src="assets/img/about-hero.svg" alt="About Hero">
-                </div>
+            <div class="row justify-content-center py-5">
+                @foreach ($categories as $key => $category)
+                    <div class="col-md-4 mt-5">
+                        <a href="/home?category={{ $category->slug }}">
+                            <div class="card text-white rounded shadow-sm categories">
+                                <img src="{{ asset('assets/img/category-ticket.jpg') }}" alt="Category" class="img-fluid card-img">
+                                <div class="card-img-overlay d-flex align-items-center p-0">
+                                    <h5 class="card-title text-center flex-fill p-4 fs-3" style="background-color: rgb(18, 201, 33);">
+                                        {{ $category->nama_kategori }}
+                                    </h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

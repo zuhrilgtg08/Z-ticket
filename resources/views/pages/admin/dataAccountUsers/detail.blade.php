@@ -1,17 +1,38 @@
 @extends('layouts.dashboard.mainDashboard', ['isMaster' => true, 'isActive' => 'menu.account'])
+
+@section('breadcumb')
+    <div class="pagetitle">
+        <h1>Account Users</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item">Master Data</li>
+                <li class="breadcrumb-item"><a href="/data_account">Account Users</a></li>
+                <li class="breadcrumb-item active">Detail</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
+
 @section('content-dashboard')
-    <h2 class="h2 mb-3 text-black-50">Detail Data Pengguna</h2>
-
-    <div class="row justify-content-center">
-        <div class="col-lg-6 mb-4">
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6">
             <div class="card shadow-inner border-0">
+                <div class="card-header mt-3">
+                    <div class="row justify-content-between mb-3">
+                        <div class="col-md-9">
+                            <h4 class="text-black-50">Detail Users</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-secondary btn-sm float-end" href="{{ route('data_account.index') }}">
+                                <i class="bi bi-arrow-left"></i>
+                                Kembali
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
-                    <a class="btn btn-secondary btn-sm mb-4" href="{{ route('data_account.index') }}">
-                        <i class="fas fa-fw fa-arrow-left"></i>
-                        Kembali
-                    </a>
-
-                    <div class="row mb-3 mx-auto">
+                    <div class="row mt-3 mx-auto">
                         <div class="col-md">
                             <div class="mb-3">
                                 @if ($pengguna->profile)

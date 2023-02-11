@@ -1,32 +1,45 @@
 @extends('layouts.dashboard.mainDashboard', ['isActive' => 'dashboard'])
-@section('content-dashboard')
-    <h2 class="h2 mb-3 text-black-50">Edit Profile Admin</h2>
 
+@section('breadcumb')
+    <div class="pagetitle">
+        <h1>Profile Admin</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item">Profile</li>
+                <li class="breadcrumb-item active">Edit</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
+
+@section('content-dashboard')
     <div class="row justify-content-center">
-        <div class="col-lg-5 mb-4">
+        <div class="col-lg-10 mt-4">
             @if (session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="alert alert-success col-md-6 alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
+        
             @if (session()->has('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="alert alert-danger col-md-6 alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             @endif
+
             <div class="card shadow-inner border-0">
+                <div class="card-header mb-3">
+                    <h2 class="text-black-50">Edit Profile</h2>
+                </div>
                 <div class="card-body">
                     <form action="{{ route('dashboard.updateProfile', $admin->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
-                            <div class="col-md">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username : </label>
                                     <input class="form-control @error('username') is-invalid @enderror" name="username"
@@ -47,14 +60,16 @@
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">No. Handphone : </label>
-                                    <input class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                        type="number" id="phone" value="{{ old('phone', $admin->phone) }}" min="1" required />
+                                    <input class="form-control @error('phone') is-invalid @enderror" name="phone" type="number" id="phone"
+                                        value="{{ old('phone', $admin->phone) }}" min="1" required />
                                     @error('phone')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
@@ -67,7 +82,7 @@
                                     @else
                                         <img class="profile-preview img-fluid mb-3 sm-2">
                                     @endif
-
+    
                                     <input type="file" class="form-control-file" @error('profile') is-invalid @enderror
                                         id="profile" name="profile" onchange="fotoProfile()">
                                     @error('profile')
@@ -78,9 +93,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="float-right mt-2">
+                        <div class="float-end mt-2">
                             <button type="submit" class="btn btn-success btn-sm">
-                                <i class="far fa-fw fa-save"></i> Simpan
+                                <i class="bi bi-save"></i> Simpan
                             </button>
                         </div>
                     </form>

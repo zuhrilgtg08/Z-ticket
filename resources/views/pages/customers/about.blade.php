@@ -12,7 +12,7 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <img src="assets/img/about-hero.svg" alt="About Hero">
+                    <img src="{{ asset('assets/img/logo-ticket.jpg') }}" alt="About us" class="img-fluid rounded">
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
     
             <div class="col-md-6 col-lg-3 pb-5">
                 <div class="h-100 py-5 services-icon-wap shadow">
-                    <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
+                    <div class="h1 text-success text-center"><i class="fas fa-plane fa-lg"></i></div>
                     <h2 class="h5 mt-4 text-center">Delivery Services</h2>
                 </div>
             </div>

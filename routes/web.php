@@ -47,11 +47,12 @@ Route::resource('data_reviews', DashboardReviewsController::class)->middleware('
 Route::resource('data_orders', DashboardOrderanUserController::class)->middleware('admin');
 // Data Hotel Admin
 Route::resource('data_hotel', DashboardHotelController::class)->middleware('admin');
+Route::get('/dashboard/hotel/slug', [DashboardHotelController::class, 'slug'])->middleware('admin');
 // Route Admin Profile
 Route::get('/dashboard/admin/edit/{id}', [DashboardController::class, 'editProfile'])->name('dashboard.editProfile')->middleware('admin');
 Route::put('/dashboard/admin/profile/update/{users:id}', [DashboardController::class, 'updateProfile'])->name('dashboard.updateProfile')->middleware('admin');
 
-// Route home frontend
+// Route halaman frontend
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 Route::get('/about', [AboutController::class, 'index'])->middleware('auth');
 Route::get('/categories', [CategoriesController::class, 'index'])->middleware('auth');

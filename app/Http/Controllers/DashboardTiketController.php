@@ -59,7 +59,7 @@ class DashboardTiketController extends Controller
             'category_id' => 'required|max:155',
             'provinsi_id' => 'required|max:155',
             'stok' => 'required|numeric|min:1',
-            'harga' => 'required|numeric|min:1',
+            'harga' => 'required|numeric|integer|min:1',
             'deskripsi_tiket' => 'required'
         ]);
 

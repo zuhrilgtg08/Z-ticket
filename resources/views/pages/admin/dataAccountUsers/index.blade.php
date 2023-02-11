@@ -1,27 +1,40 @@
 @extends('layouts.dashboard.mainDashboard', ['isMaster' => true, 'isActive' => 'menu.account'])
-@section('content-dashboard')
-    <h2 class="h2 mb-3 text-black-50">Data Account Pengguna</h2>
 
+@section('breadcumb')
+    <div class="pagetitle">
+        <h1>Account Users</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item">Master Data</li>
+                <li class="breadcrumb-item active">Account Users</li>
+            </ol>
+        </nav>
+    </div>
+@endsection
+
+
+
+@section('content-dashboard')
     @if (session()->has('error'))
         <div class="alert alert-danger col-md-6 alert-dismissible fade show" role="alert">
             {{ session('error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     <div class="card mb-3">
+        <div class="card-header mb-3">
+            <h2 class="text-black-50">Account Users</h2>
+        </div>
         <div class="card-body">
             <div class="data-table-container">
-                <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped text-center datatable" id="dataTable" width="100%" cellspacing="0">
                     <thead class="bg-gradient-light">
                         <tr>
                             <th>No</th>
-                            <th>Username</th>
-                            <th>No. Handphone</th>
-                            <th>Profil</th>
                             <th>Email</th>
+                            <th>Profil</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,10 +43,7 @@
                         @foreach ($pengguna as $item)
                             <tr>
                                 <td>{{ $nomor++ }}</td>
-                                <td>{{ $item->username }}</td>
-                                <td>
-                                    {{ $item->phone ?? '-' }}
-                                </td>
+                                <td>{{ $item->email }}</td>
                                 <td>
                                     <div class="text-center mx-auto">
                                         @if ($item->profile)
@@ -43,17 +53,14 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td>{{ $item->email }}</td>
                                 <td>
                                     <a href="{{ route('data_account.show', $item->id) }}" class="btn btn-info btn-sm">
-                                        <i class="fas fa-fw fa-info"></i></a>
-                                    <form action="{{ route('data_account.destroy', $item->id) }}" method="POST"
-                                        class="d-inline">
+                                        <i class="bi bi-info-lg"></i></a>
+                                    <form action="{{ route('data_account.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Ingin menghapus Pengguna ini ?')">
-                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                        <button type="submit" class="btn btn-danger btn-sm sweet-delete">
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -64,4 +71,28 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $('.sweet-delete').click(function(event){
+            var form = $(this).closest("form");
+            event.preventDefault();
+            Swal.fire({
+                title: 'Hapus Account?',
+                text: "Anda Yakin Ingin Menghapusnya!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm'
+            }).then((result) => {
+                setTimeout(() => {
+                    if(result.isConfirmed) {
+                        form.submit();
+                    }
+                }, 500);
+            });
+        });
+    </script>
 @endsection

@@ -100,7 +100,7 @@
                 var form = $(this).closest("form");
                 event.preventDefault();
                 Swal.fire({
-                    title: 'Hapus Kategori?',
+                    title: 'Hapus Tiket?',
                     text: "Anda Yakin Ingin Menghapusnya!",
                     icon: 'warning',
                     showCancelButton: true,
