@@ -19,6 +19,16 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li>
+                        <a class="dropdown-item d-flex align-items-center"
+                            href="/home">
+                            <i class="bi bi-house"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard.editProfile', auth()->user()->id == 1) }}">
                             <i class="bi bi-gear"></i>
                             <span>Account Settings</span>

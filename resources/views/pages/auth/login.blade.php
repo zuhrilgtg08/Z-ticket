@@ -22,26 +22,25 @@
 @endsection
 @section('content')
     <div class="container-fluid h-custom my-5">
-        <div class="row mb-5 text-center">
-            <div class="col-lg-10 mx-auto">
+        <div class="row mb-3 text-center">
+            <div class="col-lg-10 mx-auto mb-3">
                 <h2 class="text-indigo-100">Welcome! Please Login</h2>
             </div>
-        </div>
-
-        <div class="col-md-6">
-            @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-
-            @if (session()->has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
+            <div class="col-md-4 mx-auto text-start">
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+    
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+            </div>
         </div>
 
         <div class="row d-flex justify-content-center align-items-center h-100 my-5">

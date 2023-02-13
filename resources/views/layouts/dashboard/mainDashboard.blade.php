@@ -69,14 +69,11 @@
         
         <!-- Template Main JS File -->
         <script src="{{ asset('niceAdmin/js/main.js') }}"></script>
-        <!-- bootstrap js bunndle -->
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <!-- trix-editor -->
         <script src="{{ asset('assets/js/trix.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('sweetAlert/sweetalert2.all.min.js') }}"></script>
         <script src="{{ asset('select2/js/select2.min.js') }}"></script>
-        {{-- <script src="{{ asset('claveJs/cleave.min.js') }}"></script> --}}
         @yield('script')
     </body>
 </html>

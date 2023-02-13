@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->role;
         });
 
-        Paginator::useBootstrapFour();
+        Paginator::useBootstrapFive();
 
         Blade::directive('harga', function ($input) {
             return "Rp. <?php echo number_format($input,0,',','.'); ?>";

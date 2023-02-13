@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             KotaSeeder::class,
             ReviewSeeder::class,
             CategorySeeder::class,
-            TiketSeeder::class
+            TiketSeeder::class,
+            HotelSeeder::class
         ]);
     }
 }
