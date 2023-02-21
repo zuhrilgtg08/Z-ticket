@@ -7,7 +7,7 @@
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            @foreach ($tikets as $key => $item)
+            @foreach ($tikets->take(3) as $key => $item)
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                     <div class="container">
                         <div class="row p-5">
@@ -43,93 +43,115 @@
     </div>
 
     <!-- Start Featured Product -->
-    <section class="bg-default" style="background-color: #d4cec7">
-        <div class="container py-5">
-            <div class="row text-center py-3">
+    <section class="bg-default" style="background-color: #fff">
+        <div class="container py-3">
+            <div class="row text-center py-5">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
-                    <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
-                    </p>
+                    <h1 class="h1">Cari Data Terbaru</h1>
+                    <form action="/home" method="GET">
+                        @csrf
+
+                        @if (request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
+                
+                        @if (request('penerbit'))
+                            <input type="hidden" name="kota" value="{{ request('kota') }}">
+                        @endif
+                
+                        @if (request('provinsi'))
+                            <input type="hidden" name="provinsi" value="{{ request('provinsi') }}">
+                        @endif
+
+                        <div class="input-group shadow">
+                            <input type="text" class="form-control" name="cari" placeholder="Cari Data..." value="{{ request('cari') }}">
+                            <button class="btn btn-primary rounded" type="submit" id="cari-button">
+                                <i class="fas fa-fw fa-search"></i>
+                                Cari
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="{{ asset('assets/img/blank-tiket.webp') }}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">$240.00</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
-                                deserunt.
-                            </p>
-                            <p class="text-muted">Reviews (24)</p>
+                @if ($data->count())
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card rounded h-100 shadow">
+                            <a href="#">
+                                @if ($data[0]->image)
+                                    <img src="{{ asset('storage/'. $data[0]->image) }}" class="card-img-top" alt="...">
+                                @else
+                                    <img src="{{ asset('assets/img/blank-tiket.webp') }}" class="card-img-top" alt="...">
+                                @endif
+                            </a>
+                            <div class="card-body">
+                                <ul class="list-unstyled d-flex justify-content-between">
+                                    <li>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-warning fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                        <i class="text-muted fa fa-star"></i>
+                                    </li>
+                                    <li class="text-success text-right fw-bold">@harga($data[0]->harga)</li>
+                                </ul>
+                                <h2 class="fw-normal text-bg-dark">{{ $data[0]->nama_tiket }}</h2>
+                                <p class="card-text">
+                                    {!! $data[0]->excerpt !!}
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>Category : <span class="badge bg-warning text-dark">{{ $data[0]->category->nama_kategori }}</span></li>
+                                    <li>Provinsi : <span class="badge bg-success">{{ $data[0]->provinsi->nama_provinsi }}</span></li>
+                                    <li>Kota/Kabupaten : <span class="badge bg-info">{{ $data[0]->kota->nama_kota }}</span></li>
+                                </ul>
+                                <a class="btn btn-sm btn-primary" href="#"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="{{ asset('assets/img/blank-tiket.webp') }}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">$480.00</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
-                            <p class="card-text">
-                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo
-                                ullamcorper.
-                            </p>
-                            <p class="text-muted">Reviews (48)</p>
+
+                    @foreach($data->skip(1) as $item)
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="card rounded h-100 shadow">
+                                <a href="#">
+                                    @if ($item->image)
+                                        <img src="{{ asset('storage/' . $item->image) }}" class="card-img-top" alt="...">
+                                    @else
+                                        <img src="{{ asset('assets/img/blank-tiket.webp') }}" class="card-img-top" alt="...">
+                                    @endif
+                                </a>
+                                <div class="card-body">
+                                    <ul class="list-unstyled d-flex justify-content-between">
+                                        <li>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-muted fa fa-star"></i>
+                                            <i class="text-muted fa fa-star"></i>
+                                        </li>
+                                        <li class="text-success text-right fw-bold">@harga($item->harga)</li>
+                                    </ul>
+                                    <h2 class="fw-normal text-bg-dark">{{ $item->nama_tiket }}</h2>
+                                    <p class="card-text">
+                                        {!! $item->excerpt !!}
+                                    </p>
+                                    <ul class="list-unstyled">
+                                        <li>Category : <span class="badge bg-warning text-dark">{{ $item->category->nama_kategori }}</span></li>
+                                        <li>Provinsi : <span class="badge bg-success">{{ $item->provinsi->nama_provinsi }}</span></li>
+                                        <li>Kota/Kabupaten : <span class="badge bg-danger">{{ $item->kota->nama_kota }}</span></li>
+                                    </ul>
+                                    <a class="btn btn-sm btn-primary" href="#"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
+                                </div>
+                            </div>
                         </div>
+                    @endforeach
+                @else
+                    <div class="col-md-6 mt-3 m-auto text-center ">
+                        <p class="fs-4 h3 mb-3">Maaf, Data Tidak Tersedia!.</p>
                     </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="{{ asset('assets/img/blank-tiket.webp') }}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">$360.00</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
-                            <p class="card-text">
-                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque
-                                ipsum lobortis nec.
-                            </p>
-                            <p class="text-muted">Reviews (74)</p>
-                        </div>
-                    </div>
-                </div>
+                @endif
+            </div>
+            <div div="row bg-success">
+                {!! $data->links() !!}
             </div>
         </div>
     </section>

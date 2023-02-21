@@ -4,15 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DashboardHotelController;
 use App\Http\Controllers\DashboardTiketController;
 use App\Http\Controllers\DashboardReviewsController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardAccountUserController;
-use App\Http\Controllers\DashboardHotelController;
 use App\Http\Controllers\DashboardOrderanUserController;
 
 /*
@@ -57,6 +58,10 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
 Route::get('/about', [AboutController::class, 'index'])->middleware('auth');
 Route::get('/categories', [CategoriesController::class, 'index'])->middleware('auth');
 Route::get('/shop', [ShopController::class, 'index'])->middleware('auth');
+
+// Route halaman edit porfile frontend
+Route::get('/edit/profile/{users:id}', [UsersController::class, 'edit'])->name('edit.profile')->middleware('auth');
+Route::put('/edit/profile/{users:id}/proses/update', [UsersController::class, 'update'])->name('update.profile')->middleware('auth');
 
 // Route auth & register
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

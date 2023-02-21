@@ -41,9 +41,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('edit.profile', auth()->user()->id) }}">
                                 <i class="bi bi-person-circle"></i> Edit Profile</a>
-                            </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

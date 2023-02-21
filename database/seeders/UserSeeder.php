@@ -23,5 +23,14 @@ class UserSeeder extends Seeder
             'profile' => null,
             'password' => bcrypt('zuhrilfahrizal123')
         ]);
+
+        User::create([
+            'username' => 'dimas86',
+            'email' => 'dimas86@gmail.com',
+            'role' => 0,
+            'phone' => '082377632817',
+            'profile' => null,
+            'password' => bcrypt('dimas123')
+        ]);
     }
 }

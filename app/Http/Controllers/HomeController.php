@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $tikets = Tiket::all();
+        $tikets = Tiket::latest()->get();
 
         $init = null;
         if (request('category')) {
@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('pages.customers.index', [
             "tikets" => $tikets,
             "init" => $init,
-            "data" => Tiket::latest()->filter(request(['cari', 'category', 'kota', 'provinsi']))->paginate(9)->withQueryString(),
+            "data" => Tiket::latest()->filter(request(['cari', 'category', 'kota', 'provinsi']))->paginate(6)->withQueryString(),
         ]);
     }
 }
