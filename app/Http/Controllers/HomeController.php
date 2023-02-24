@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Kota;
+use App\Models\Hotel;
 use App\Models\Tiket;
 use App\Models\Category;
-use App\Models\Kota;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,16 @@ class HomeController extends Controller
             "tikets" => $tikets,
             "init" => $init,
             "data" => Tiket::latest()->filter(request(['cari', 'category', 'kota', 'provinsi']))->paginate(6)->withQueryString(),
+        ]);
+    }
+
+    public function detail($id)
+    {
+        $hotel = Hotel::where('tiket_id', $id)->latest()->get();
+        $detail = Tiket::findOrFail($id);
+        return view('pages.customers.homeData.tiketFrontend.detail', [
+            'detail' => $detail,
+            'hotel' => $hotel
         ]);
     }
 }

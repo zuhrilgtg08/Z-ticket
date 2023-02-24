@@ -55,6 +55,7 @@ Route::put('/dashboard/admin/profile/update/{users:id}', [DashboardController::c
 
 // Route halaman frontend
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/home/tiket/data/detail/{tiket:id}', [HomeController::class, 'detail'])->name('homeTiket.detail')->middleware('auth');
 Route::get('/about', [AboutController::class, 'index'])->middleware('auth');
 Route::get('/categories', [CategoriesController::class, 'index'])->middleware('auth');
 Route::get('/shop', [ShopController::class, 'index'])->middleware('auth');

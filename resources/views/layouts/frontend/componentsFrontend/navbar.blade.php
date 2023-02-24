@@ -40,16 +40,23 @@
                         @endif
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('edit.profile', auth()->user()->id) }}">
-                                <i class="bi bi-person-circle"></i> Edit Profile</a>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi bi-clock-history"></i> History Orders</a>
-                        </li>
+                        @if(auth()->user()->id == 1)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                    <i class="bi bi-server"></i> Dashboard</a>
+                            </li>
+                        @else
+                            <li>
+                                <a class="dropdown-item" href="{{ route('edit.profile', auth()->user()->id) }}">
+                                    <i class="bi bi-person-circle"></i> Edit Profile</a>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bi bi-clock-history"></i> History Orders</a>
+                            </li>
+                        @endif
                         <li>
                             <hr class="dropdown-divider">
                         </li>

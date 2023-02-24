@@ -16,8 +16,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
     <!-- icon -->
 	<link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css') }}">
 
     <!-- css main -->
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
     @yield('style')
 </head>
 <body>
@@ -33,6 +43,7 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/templatemo.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
     @yield('script')
 </body>
 </html>

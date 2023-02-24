@@ -42,7 +42,6 @@
         </a>
     </div>
 
-    <!-- Start Featured Product -->
     <section class="bg-default" style="background-color: #fff">
         <div class="container py-3">
             <div class="row text-center py-5">
@@ -104,7 +103,7 @@
                                     <li>Provinsi : <span class="badge bg-success">{{ $data[0]->provinsi->nama_provinsi }}</span></li>
                                     <li>Kota/Kabupaten : <span class="badge bg-info">{{ $data[0]->kota->nama_kota }}</span></li>
                                 </ul>
-                                <a class="btn btn-sm btn-primary" href="#"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
+                                <a class="btn btn-sm btn-primary" href="{{ route('homeTiket.detail', $data[0]->id) }}"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
                             </div>
                         </div>
                     </div>
@@ -139,7 +138,7 @@
                                         <li>Provinsi : <span class="badge bg-success">{{ $item->provinsi->nama_provinsi }}</span></li>
                                         <li>Kota/Kabupaten : <span class="badge bg-danger">{{ $item->kota->nama_kota }}</span></li>
                                     </ul>
-                                    <a class="btn btn-sm btn-primary" href="#"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('homeTiket.detail', $item->id) }}"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -150,10 +149,9 @@
                     </div>
                 @endif
             </div>
-            <div div="row bg-success">
+            <div div="row bg-primary">
                 {!! $data->links() !!}
             </div>
         </div>
     </section>
-    <!-- End Featured Product -->
 @endsection
