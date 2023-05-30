@@ -17,9 +17,9 @@ class ReviewSeeder extends Seeder
     {
         Review::create([
             'user_id' => 2,
-            'tiket_id' => 2,
-            'nilai_rating' => 3,
-            'komentar' => 'Sangat mantap, dengan promonya'
+            'hotel_id' => 2,
+            'nilai_rating' => 4,
+            'komentar' => 'Sangat mantap, dengan harga promonya'
         ]);
     }
 }

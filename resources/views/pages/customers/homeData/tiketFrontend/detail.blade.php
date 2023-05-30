@@ -4,46 +4,41 @@
         <div class="container pb-5">
             <div class="row">
                 <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow" style="max-width: 22rem;">
                         @if ($detail->image)
-                            <img class="card-img img-fluid" src="{{ asset('storage/'. $detail->image) }}" alt="Card image" id="product-detail">
+                            <img class="card-img img-fluid rounded" src="{{ asset('storage/'. $detail->image) }}" alt="Card image" id="product-detail">
                         @else
-                            <img class="card-img img-fluid" src="{{ asset('assets/img/logo-ticket.jpg') }}" alt="Card image" id="product-detail">
+                            <img class="card-img img-fluid rounded" src="{{ asset('assets/img/blank-tiket.webp') }}" alt="Card image" id="product-detail">
                         @endif
                     </div>
                 </div>
                 <div class="col-lg-7 mt-5">
                     <div class="card">
-                        <div class="card-body">
-                            <h2>{{ $detail->nama_tiket }}</h2>
-                            <p class="h3 py-2">@harga($detail->harga)</p>
-                            <p class="py-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
-                            </p>
+                        <div class="card-body shadow border-0 rounded">
+                            <div class="row justify-content-between">
+                                <div class="col-md-6">
+                                    <h2>{{ $detail->nama_tiket }}</h2>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="/home" class="btn btn-dark btn-sm float-end rounded"><i class="fas fa-fw fa-arrow-left"></i> Kembali</a>
+                                </div>
+                            </div>
+                            <p class="h3 py-2">Harga : <span class="badge bg-danger">@harga($detail->harga)</span></p>
                             <h6>Description:</h6>
                             <p>{!! $detail->deskripsi_tiket !!}</p>
-    
-                            <form action="" method="GET">
+                            <form action="" method="POST">
                                 <div class="row g-3 align-items-center mb-3">
-                                    <div class="col-auto">
+                                    <div class="col-md-2">
                                         <label for="jumlah" class="col-form-label">Jumlah : </label>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <input type="number" id="jumlah" name="jumlah" 
-                                            value="1" min="1" max="{{ $detail->stok }}" class="form-control border-2 shadow text-center">
+                                            value="1" min="1" max="{{ $detail->stok }}" 
+                                                class="form-control text-center shadow rounded border-secondary border-1">
                                     </div>
-                                </div>
-                                <div class="row justify-content-between">
                                     <div class="col-md-4">
-                                        <a href="/home" class="btn btn-dark btn-sm"><i class="fas fa-fw fa-arrow-left"></i> Kembali</a>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <button type="submit" class="btn btn-danger float-end" name="submit">
+                                        <button type="{{ (auth()->user()->role == 1) ? 'button' : 'submit' }}" class="btn btn-danger {{ (auth()->user()->role == 1) ? 'disabled' : '' }}"
+                                            style="{{ (auth()->user()->role == 1) ? 'cursor: not-allowed !important; pointer-events: auto;' : '' }}" >
                                             <i class="fas fa-fw fa-money-bill"></i>
                                             Add To Cart
                                         </button>
@@ -60,58 +55,40 @@
     <section class="py-5">
         <div class="container">
             <div class="row text-left p-2 pb-3">
-                <h4>Data Kamar Hotel Terkait</h4>
+                <h4>Kamar Hotel Terkait</h4>
             </div>
-    
-            <div id="carousel-related-product">
-                @foreach ($hotel as $key => $item)
-                    <div class="p-2 pb-3">
-                        <div class="product-wap card rounded-0">
-                            <div class="card rounded-0">
-                                @if ($item->image_hotel)
-                                    <img class="card-img rounded-0 img-fluid" src="{{ asset('storage/' . $item->image_hotel) }}">
-                                @else
-                                    <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/blank-hotel.webp') }}">
-                                @endif
-                                <div
-                                    class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white" href="#"><i
-                                                    class="far fa-heart"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="#"><i
-                                                    class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="#"><i
-                                                    class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
+
+            @if ($hotel->count())
+                <div id="carousel-related-product">
+                    @foreach ($hotel as $key => $item)
+                        <div class="p-2 pb-3">
+                            <div class="product-wap card rounded-0 shadow">
+                                <div class="card rounded-0">
+                                    @if ($item->image_hotel)
+                                        <img class="rounded-0 card-img" src="{{ asset('storage/' . $item->image_hotel) }}" height="300px">
+                                    @else
+                                        <img class="rounded-0 card-img" src="{{ asset('assets/img/blank-hotel.webp') }}" height="300px">
+                                    @endif
+                                    <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                        <a href="{{ route('homeHotel.detail', $item->id) }}" class="btn btn-primary btn-lg text-white">
+                                            <i class="fas fa-fw fa-info-circle text-white"></i> Read More</a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="fw-normal text-center">{{ $item->nama_hotel }}</h4>
+                                    <p class="text-dark text-center">{{ $item->excerpt }}</p>
+                                    <p class="text-center mb-0 text-danger fw-bold">@harga($item->harga_hotel)</p>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Red Clothing</a>
-                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <li>M/L/X/XL</li>
-                                    <li class="pt-2">
-                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                        <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                    </li>
-                                </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
-                                <p class="text-center mb-0">$20.00</p>
-                            </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="col-md-6 mt-3 m-auto text-center ">
+                    <p class="fs-4 h3 mb-3">Maaf, Kamar Tidak Tersedia!.</p>
+                </div>
+            @endif
+    
         </div>
     </section>
 @endsection

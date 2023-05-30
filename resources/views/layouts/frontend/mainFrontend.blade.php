@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Z-ᖷricket</title>
+    <title>Z-Ticket</title>
 
     <!-- link main -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -14,8 +14,8 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
-    <!-- icon -->
-	<link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+   <!-- Favicons -->
+    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css') }}">

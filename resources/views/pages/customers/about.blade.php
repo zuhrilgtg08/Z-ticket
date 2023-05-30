@@ -6,13 +6,13 @@
                 <div class="col-md-8 text-white">
                     <h1>About Us</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                       Ex fames nam molestie purus proin ligula turpis vehicula per. Urna dapibus facilisis tincidunt fusce sagittis praesent
+                    fames cras mattis. Faucibus dictumst vehicula ipsum viverra torquent tellus at himenaeos. Porttitor libero dignissim
+                    volutpat parturient ac facilisis fringilla dictumst. Condimentum urna cubilia mauris arcu nascetur.
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{ asset('assets/img/logo-ticket.jpg') }}" alt="About us" class="img-fluid rounded">
+                    <img src="{{ asset('assets/img/ticket.jpg') }}" alt="About us" class="img-fluid rounded">
                 </div>
             </div>
         </div>

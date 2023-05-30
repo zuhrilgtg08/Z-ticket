@@ -21,8 +21,8 @@ class HotelSeeder extends Seeder
             'tiket_id' => 1,
             'image_hotel' => null,
             'harga_hotel' => 2000000,
-            'deskripsi_hotel' => 'Hotel Majapahit ternyata sempat berganti nama beberapa kali. Sebelum dikenal sebagai Hotel Majapahit, hotel bersejarah di Kota Surabaya ini sempat disebut Hotel Oranje, Yamato, hingga Merdeka.',
-            'excerpt' => 'Hotel Majapahit ternyata...'
+            'deskripsi_hotel' => '<div>Dui elit quis scelerisque conubia integer facilisis erat sit sociosqu. Fermentum cras pede nam suspendisse dolor pharetra. Vehicula egestas luctus mi efficitur ipsum. Sem tempor hendrerit congue id in. Tellus felis libero bibendum ridiculus consectetuer erat pulvinar nibh in. Molestie aenean inceptos tempor est eleifend turpis commodo lacus pulvinar ultrices auctor.</div>.',
+            'excerpt' => 'Dui elit quis scelerisque conubia integer facilisi...'
         ]);
     }
 }

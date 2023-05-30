@@ -13,8 +13,12 @@
         <ul class="d-flex align-items-center">
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">Selamat Datang, Admin</span>
+                    @if (auth()->user()->profile || auth()->user()->role == 1)
+                        <img src="{{ asset('storage/' . auth()->user()->profile) }}" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Selamat Datang, Admin</span>
+                    @else
+                        <img src="{{ asset('assets/img/users.png') }}" alt="Profile" class="rounded-circle">
+                    @endif
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -63,8 +67,8 @@
                 @csrf
                 <div class="modal-body">Yakin Ingin Logout dari Dashboard ? </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Logout</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Close</button>
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-arrow-right-circle"></i> Logout</button>
                 </div>
             </form>
         </div>

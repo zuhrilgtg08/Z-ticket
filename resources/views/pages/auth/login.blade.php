@@ -13,6 +13,31 @@
         height: 100%;
     }
 
+    .img-welcome {
+        -webkit-animation: fade-in .5s ease-in-out;
+        animation: fade-in 3s ease-in-out;
+    }
+
+    @-webkit-keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
     @media (max-width: 450px) {
         .h-custom {
             height: 100%;
@@ -43,11 +68,12 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center align-items-center h-100 my-5">
-        <div class="col-lg-6 col-xl-5">
-            <img src="{{ asset('assets/img/ticket.gif') }}" class="img-fluid rounded" alt="logo-image" />
+    <div class="row d-flex justify-content-center align-items-center my-5">
+        <div class="col-xl-4 mb-5">
+            <img src="{{ asset('assets/img/ticket.jpg') }}" class="img-fluid rounded shadow img-welcome"
+                alt="logo-image" width="500" />
         </div>
-        <div class="col-lg-6 col-xl-4 offset-xl-1 mb-5">
+        <div class="col-xl-4 offset-xl-1 mb-5">
             <form action="{{ route('login.process') }}" method="POST" class="d-inline">
                 @csrf
                 <!-- Email input -->

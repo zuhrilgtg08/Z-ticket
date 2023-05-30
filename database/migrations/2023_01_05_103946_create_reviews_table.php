@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->foreignId('tiket_id');
+            $table->foreignId('hotel_id');
             $table->float('nilai_rating');
             $table->longText('komentar')->nullable();
             $table->timestamps();

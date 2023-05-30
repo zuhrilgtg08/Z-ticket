@@ -85,13 +85,6 @@
                             </a>
                             <div class="card-body">
                                 <ul class="list-unstyled d-flex justify-content-between">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
                                     <li class="text-success text-right fw-bold">@harga($data[0]->harga)</li>
                                 </ul>
                                 <h2 class="fw-normal text-bg-dark">{{ $data[0]->nama_tiket }}</h2>
@@ -120,13 +113,6 @@
                                 </a>
                                 <div class="card-body">
                                     <ul class="list-unstyled d-flex justify-content-between">
-                                        <li>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-muted fa fa-star"></i>
-                                            <i class="text-muted fa fa-star"></i>
-                                        </li>
                                         <li class="text-success text-right fw-bold">@harga($item->harga)</li>
                                     </ul>
                                     <h2 class="fw-normal text-bg-dark">{{ $item->nama_tiket }}</h2>

@@ -54,7 +54,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="{{ route('data_account.show', $item->id) }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('data_account.show', $item->id) }}" class="btn btn-primary btn-sm">
                                         <i class="bi bi-info-lg"></i></a>
                                     <form action="{{ route('data_account.destroy', $item->id) }}" method="POST" class="d-inline">
                                         @csrf

@@ -46,17 +46,22 @@
                             <div class="mb-3">
                                 <div class="text-body text-gray-900">
                                     <h5 class="text-gray-900 text-normal">Username : 
-                                    <span class="text-danget text-bold">{{ $pengguna->username }}</span></h5>
+                                    <span class="badge bg-primary">{{ $pengguna->username }}</span></h5>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <h5 class="text-gray-900 text-normal">Email :
-                                    <span class="text-success">{{ $pengguna->email }}</span>
+                                    <span class="badge bg-success">{{ $pengguna->email }}</span>
+                                </h5>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="text-gray-900 text-normal">Role :
+                                    <span class="badge bg-warning text-dark font-bold">{{ ($pengguna->role == 0) ? 'User' : '-' }}</span>
                                 </h5>
                             </div>
                             <div class="mb-3">
                                 <h5 class="text-gray-900"> No. Handphone :
-                                    <span class="text-danger text-normal">{{ $pengguna->phone ?? '-' }}</span>
+                                    <span class="badge bg-danger">{{ $pengguna->phone ?? '-' }}</span>
                                 </h5>
                             </div>
                         </div>

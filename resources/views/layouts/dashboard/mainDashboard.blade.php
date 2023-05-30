@@ -44,6 +44,7 @@
 
         <main id="main" class="main">
             @yield('breadcumb')
+            @yield('content-admin-profile')
             <section class="section dashboard">
                 <div class="row">
                     @yield('content-dashboard')

@@ -48,7 +48,8 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a href="{{ route('data_reviews.index') }}" 
+                class="nav-link {{ isset($isActive) && $isActive === 'menu.reviews' ? '' : 'collapsed'}}">
                 <i class="bi bi-award"></i>
                 <span>Reviews</span>
             </a>

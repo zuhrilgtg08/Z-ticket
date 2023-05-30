@@ -15,7 +15,7 @@ class Tiket extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'tiket';
-    protected $with = ['kota', 'provinsi', 'category', 'review', 'keranjang'];
+    protected $with = ['kota', 'provinsi', 'category', 'keranjang', 'hotel'];
 
     public function kota()
     {
@@ -32,14 +32,14 @@ class Tiket extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function review()
-    {
-        return $this->hasMany(Review::class);
-    }
-
     public function keranjang()
     {
         return $this->hasMany(Keranjang::class, 'tiket_id');
+    }
+
+    public function hotel()
+    {
+        return $this->hasMany(Hotel::class);
     }
 
     public function scopeFilter($query, array $filters)
@@ -67,6 +67,4 @@ class Tiket extends Model
             });
         });
     }
-
-
 }

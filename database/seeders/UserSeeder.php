@@ -16,17 +16,17 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'username' => 'zuhril123',
-            'email' => 'zuhrilfahrizal123@gmail.com',
+            'username' => 'admin2023',
+            'email' => 'admin2023@gmail.com',
             'role' => 1,
             'phone' => '082355217741',
             'profile' => null,
-            'password' => bcrypt('zuhrilfahrizal123')
+            'password' => bcrypt('admin2023')
         ]);
 
         User::create([
-            'username' => 'dimas86',
-            'email' => 'dimas86@gmail.com',
+            'username' => 'dimas123',
+            'email' => 'dimas123@gmail.com',
             'role' => 0,
             'phone' => '082377632817',
             'profile' => null,
