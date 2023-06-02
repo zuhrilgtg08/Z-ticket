@@ -26,15 +26,23 @@
                             <p class="h3 py-2">Harga : <span class="badge bg-danger">@harga($detail->harga)</span></p>
                             <h6>Description:</h6>
                             <p>{!! $detail->deskripsi_tiket !!}</p>
-                            <form action="" method="POST">
+                            <form action="{{ route('cart.store') }}" method="POST">
                                 <div class="row g-3 align-items-center mb-3">
+                                    @csrf
                                     <div class="col-md-2">
-                                        <label for="jumlah" class="col-form-label">Jumlah : </label>
+                                        <label for="quantity" class="col-form-label">Jumlah : </label>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" id="jumlah" name="jumlah" 
+                                        <input type="hidden" name="tiket_id" value="{{ $detail->id }}" />
+                                        <input type="number" id="quantity" name="quantity" 
                                             value="1" min="1" max="{{ $detail->stok }}" 
-                                                class="form-control text-center shadow rounded border-secondary border-1">
+                                                class="form-control @error('quantity') is-invalid @enderror 
+                                                        text-center shadow rounded border-secondary border-1" />
+                                        @error('quantity')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-md-4">
                                         <button type="{{ (auth()->user()->role == 1) ? 'button' : 'submit' }}" class="btn btn-danger {{ (auth()->user()->role == 1) ? 'disabled' : '' }}"

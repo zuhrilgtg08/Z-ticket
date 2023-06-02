@@ -15,7 +15,7 @@ class Tiket extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'tiket';
-    protected $with = ['kota', 'provinsi', 'category', 'keranjang', 'hotel'];
+    protected $with = ['kota', 'provinsi', 'category', 'hotel'];
 
     public function kota()
     {

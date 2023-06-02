@@ -19,6 +19,8 @@
     <!-- Slick -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css') }}">
+    <!-- sweetAlert-2 -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('sweetAlert/sweetalert2.min.css') }}">
 
     <!-- css main -->
     <style>
@@ -44,6 +46,8 @@
     <script src="{{ asset('assets/js/templatemo.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <!-- sweetAlert-2 -->
+    <script src="{{ asset('sweetAlert/sweetalert2.all.min.js') }}"></script>
     @yield('script')
 </body>
 </html>

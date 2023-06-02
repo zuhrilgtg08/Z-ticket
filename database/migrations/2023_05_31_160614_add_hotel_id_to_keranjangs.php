@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('keranjangs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('tiket_id');
+        Schema::table('keranjangs', function (Blueprint $table) {
             $table->foreignId('hotel_id');
-            $table->foreignId('pesanan_id');
-            $table->integer('quantity');
-            $table->string('status_pembayaran')->default('unpaid');
-            $table->timestamps();
         });
     }
 
@@ -32,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keranjangs');
+        Schema::table('keranjangs', function (Blueprint $table) {
+            $table->dropColumn('hotel_id');
+        });
     }
 };

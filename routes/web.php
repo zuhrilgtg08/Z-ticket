@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardHotelController;
 use App\Http\Controllers\Dashboard\DashboardTiketController;
@@ -62,6 +63,11 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/home/tiket/data/detail/{tiket:id}', [HomeController::class, 'detail'])->name('homeTiket.detail')->middleware('auth');
 Route::get('/home/tiket/hotel/detail/{hotel:id}', [HomeController::class, 'detail_hotel'])->name('homeHotel.detail')->middleware('auth');
 Route::post('/home/hotel/reviews', [HomeController::class, 'reviewHotel'])->name('review.hotel')->middleware('auth');
+// Route Cart Users
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
+Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store')->middleware('auth');
+Route::post('/cart/update/{keranjangs:id}', [CartController::class, 'update'])->name('cart.update')->middleware('auth');
+Route::post('/cart/destroy/{keranjangs:id}', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('auth');
 
 // Route halaman edit porfile frontend
 Route::get('/edit/profile/{users:id}', [UsersController::class, 'edit'])->name('edit.profile')->middleware('auth');

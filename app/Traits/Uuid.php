@@ -2,9 +2,10 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Str;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
+use Ramsey\Uuid\Uuid as Generator;
 
-trait UUID
+trait Uuid
 {
     protected static function boot ()
     {
@@ -16,8 +17,10 @@ trait UUID
          * Sets the 'id' to a UUID using Str::uuid() on the instance being created
          */
         static::creating(function ($model) {
-            if ($model->getKey() === null) {
-                $model->setAttribute($model->getKeyName(), Str::uuid()->toString());
+            try {
+                $model->uuid = Generator::uuid4()->toString();
+            } catch (UnsupportedOperationException $th) {
+                abort(500, $th->getMessage());
             }
         });
     }

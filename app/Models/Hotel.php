@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Tiket;
 
 use App\Models\Review;
+use App\Models\Keranjang;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,11 @@ class Hotel extends Model
     public function review()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function keranjang()
+    {
+        return $this->hasMany(Keranjang::class, 'hotel_id');
     }
 
     public function scopeFilter($query, array $filters)

@@ -25,14 +25,18 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('explore') ? 'active' : '' }}" href="/explore">Explore</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-cart-fill"></i> 
-                            Cart
-                            {{-- <div class="badge rounded-pill bg-danger" style="padding: 2px 10px 0px;">
-                                <span>0</span>
-                            </div> --}}
-                        </a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('cart') ? 'active' : '' }}" href="/cart"" href="#"><i class="bi bi-cart-fill"></i> 
+                                Cart
+                                @if (!$keranjangs->isEmpty())
+                                    <div class="badge rounded-pill bg-danger" style="padding: 2px 10px 0px;">
+                                        <span>{{ $keranjangs->count() }}</span>
+                                    </div>
+                                @endif
+                            </a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
 
