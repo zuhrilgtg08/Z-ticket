@@ -17,7 +17,9 @@ class Controller extends BaseController
     {
         $this->middleware(function ($request, $next) {
             if(auth()->user()) {
-                $keranjangs = Keranjang::where('user_id', auth()->user()->id)->get();
+                $keranjangs = Keranjang::where('user_id', auth()->user()->id)
+                                    ->where('status_pembayaran', '=', 'unpaid')
+                                    ->get();
                 
                 View::share('keranjangs', $keranjangs);
             }

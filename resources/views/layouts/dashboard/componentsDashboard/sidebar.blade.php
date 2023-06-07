@@ -41,7 +41,8 @@
         <li class="nav-heading">Laporan</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a href="{{ route('data_orders.index') }}" 
+                class="nav-link {{ isset($isActive) && $isActive === 'menu.orders' ? '' : 'collapsed'}}">
                 <i class="bi bi-filetype-m4p"></i>
                 <span>Pesanan Users</span>
             </a>

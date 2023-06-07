@@ -11,8 +11,8 @@ class CartController extends Controller
     public function index()
     {
         $carts = Keranjang::where('user_id', '=', Auth::user()->id)
-                            ->where('status_pembayaran', '=', 'unpaid')->get();
-
+                            ->where('status_pembayaran', '=', 'unpaid')
+                            ->get();
         $totalPayment = 0;
         foreach($carts as $data) {
             if($data->quantity >= $data->tiket->stok) {
@@ -22,7 +22,7 @@ class CartController extends Controller
             }
         }
 
-        return view('pages.customers.homeData.pembayaran.index', compact('carts', 'totalPayment'));
+        return view('pages.customers.homeData.keranjang.index', compact('carts', 'totalPayment'));
     }
 
     public function store(Request $request)

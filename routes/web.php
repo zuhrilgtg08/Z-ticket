@@ -16,6 +16,9 @@ use App\Http\Controllers\Dashboard\DashboardReviewsController;
 use App\Http\Controllers\Dashboard\DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardAccountUserController;
 use App\Http\Controllers\Dashboard\DashboardOrderanUserController;
+use App\Http\Controllers\Pesanan\PesananController;
+use App\Http\Controllers\Pesanan\PaymentCallbackController;
+use App\Http\Controllers\Pesanan\HistoryPesananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +48,9 @@ Route::get('/dashboard/categories/slug', [DashboardCategoryController::class, 's
 Route::resource('data_account', DashboardAccountUserController::class)->middleware('admin');
 // Data Reviews admin
 Route::resource('data_reviews', DashboardReviewsController::class)->middleware('admin');
-// Data Orders admin
+// Data Orders admin & export pdf
 Route::resource('data_orders', DashboardOrderanUserController::class)->middleware('admin');
+Route::get('/export_orders/pdf', [DashboardOrderanUserController::class, 'exportPdf'])->name('export.orders')->middleware('admin');
 // Data Hotel Admin
 Route::resource('data_hotel', DashboardHotelController::class)->middleware('admin');
 Route::get('/dashboard/hotel/slug', [DashboardHotelController::class, 'slug'])->middleware('admin');
@@ -68,6 +72,18 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middl
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store')->middleware('auth');
 Route::post('/cart/update/{keranjangs:id}', [CartController::class, 'update'])->name('cart.update')->middleware('auth');
 Route::post('/cart/destroy/{keranjangs:id}', [CartController::class, 'destroy'])->name('cart.destroy')->middleware('auth');
+
+// Route order customers
+Route::get('/orders/detail/{users:id}', [PesananController::class, 'detailOrders'])->name('order.detail')->middleware('auth');
+Route::post('/order/create_order', [PesananController::class, 'createOrders'])->name('order.create')->middleware('auth');
+Route::get('/order/pay_order', [PesananController::class, 'payOrders'])->name('order.pay')->middleware('auth');
+
+// Route pay Midtrans payment
+Route::post('/payment/midtrans-notification', [PaymentCallbackController::class, 'receive']);
+
+// Route history pesanan customers & print
+Route::get('/history/orders/{users:id}', [HistoryPesananController::class, 'list'])->name('history.orders')->middleware('auth');
+Route::get('/history/orders/print/{users:id}', [HistoryPesananController::class, 'print'])->name('history.print')->middleware('auth');
 
 // Route halaman edit porfile frontend
 Route::get('/edit/profile/{users:id}', [UsersController::class, 'edit'])->name('edit.profile')->middleware('auth');

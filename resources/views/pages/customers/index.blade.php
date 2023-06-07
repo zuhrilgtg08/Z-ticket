@@ -11,20 +11,22 @@
                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                     <div class="container">
                         <div class="row p-5">
-                            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <div class="mx-auto col-lg-6 order-lg-last">
                                 @if ($item->image)
                                     <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="">
                                 @else
                                     <img class="img-fluid" src="{{ asset('assets/img/blank-tiket.webp') }}" alt="">
                                 @endif
                             </div>
+                            
                             <div class="col-lg-6 mb-0 d-flex align-items-center">
                                 <div class="text-align-left">
                                     <h1 class="h1">{{ $item->nama_tiket }}</h1>
                                     <h3 class="h2">{{ $item->excerpt }}</h3>
-                                    <p>
-                                        {!! $item->deskripsi_tiket !!}
-                                    </p>
+                                    <p>{!! $item->deskripsi_tiket !!}</p>
+                                    <a class="btn btn-primary" href="{{ route('homeTiket.detail', $item->id) }}">
+                                        <i class="fas fa-fw fa-info-circle"></i> Detail
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -97,6 +99,17 @@
                                     <li>Kota/Kabupaten : <span class="badge bg-info">{{ $data[0]->kota->nama_kota }}</span></li>
                                 </ul>
                                 <a class="btn btn-sm btn-primary" href="{{ route('homeTiket.detail', $data[0]->id) }}"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
+                                <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <input type="hidden" name="tiket_id" value="{{ $data[0]->id }}" />
+                                    <input type="hidden" id="quantity" name="quantity" value="1" min="1" max="{{ $data[0]->stok }}"/>
+                                    <button type="{{ (auth()->user()) ? 'submit' : 'disabled' }}"
+                                        class="btn btn-danger btn-sm {{ (auth()->user()) ? '' : 'd-none' }}"
+                                        style="{{ (auth()->user()) ? '' : 'cursor: not-allowed !important; pointer-events: auto;' }}">
+                                        <i class="fas fa-fw fa-money-bill"></i>
+                                        Add To Cart
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -125,6 +138,17 @@
                                         <li>Kota/Kabupaten : <span class="badge bg-danger">{{ $item->kota->nama_kota }}</span></li>
                                     </ul>
                                     <a class="btn btn-sm btn-primary" href="{{ route('homeTiket.detail', $item->id) }}"><i class="fas fa-fw fa-info-circle"></i> Detail</a>
+                                    <form action="{{ route('cart.store') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <input type="hidden" name="tiket_id" value="{{ $item->id }}" />
+                                        <input type="hidden" id="quantity" name="quantity" value="1" min="1" max="{{ $item->stok }}" />
+                                        <button type="{{ (auth()->user()) ? 'submit' : 'disabled' }}"
+                                            class="btn btn-danger btn-sm {{ (auth()->user()) ? '' : 'd-none' }}"
+                                            style="{{ (auth()->user()) ? '' : 'cursor: not-allowed !important; pointer-events: auto;' }}">
+                                            <i class="fas fa-fw fa-money-bill"></i>
+                                            Add To Cart
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

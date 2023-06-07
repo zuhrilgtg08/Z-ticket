@@ -15,13 +15,10 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->uuid()->unique();
+            $table->uuid();
             $table->integer('total_pembayaran');
-            $table->string('transaction_id')->nullable();
-            $table->string('transaction_status')->nullable();
-            $table->date('transaction_time')->nullable();
-            $table->string('payment_type')->nullable();
-            $table->string('payment_code')->nullable();
+            $table->enum('payment_status', ['1', '2', '3', '4'])
+                    ->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa, 4=dibatalkan');
             $table->string('snap_token', 36)->nullable();
             $table->timestamps();
         });

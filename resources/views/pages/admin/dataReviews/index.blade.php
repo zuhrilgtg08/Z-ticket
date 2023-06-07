@@ -6,7 +6,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Reviews</a></li>
+                <li class="breadcrumb-item active"><a href="/data_reviews">Reviews</a></li>
             </ol>
         </nav>
     </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-
+use App\Models\Pesanan;
+use App\Models\Keranjang;
 use Illuminate\Http\Request;
+use PDF;
+use App\Http\Controllers\Controller;
 
 class DashboardOrderanUserController extends Controller
 {
@@ -15,7 +17,11 @@ class DashboardOrderanUserController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.dataOrderanUsers.index');
+        $listOrder = Keranjang::with(['hotel', 'tiket', 'pesanan', 'user'])
+            ->where('status_pembayaran', '=', 'paid')
+            ->where('user_id', '<>', 1)->latest()->get();
+
+        return view('pages.admin.dataOrderanUsers.index', compact('listOrder'));
     }
 
     /**
@@ -47,7 +53,16 @@ class DashboardOrderanUserController extends Controller
      */
     public function show($id)
     {
-        return view('pages.admin.dataOrderanUsers.detail');
+        $pesanan = Pesanan::findOrFail($id);
+        return view('pages.admin.dataOrderanUsers.detail', ['pesanan' => $pesanan]);
+    }
+
+    public function exportPdf()
+    {
+        $data = Keranjang::with(['pesanan', 'tiket', 'hotel'])->get();
+        $pdf = PDF::loadView('report.dataAdminOrders', compact('data'));
+        $pdf->setPaper('legal', 'landscape');
+        return $pdf->download("Orders_Customers " . date('d-m-Y') . '.pdf');
     }
 
     /**

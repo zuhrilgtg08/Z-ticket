@@ -13,12 +13,12 @@
         <ul class="d-flex align-items-center">
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    @if (auth()->user()->profile || auth()->user()->role == 1)
+                    @if (auth()->user()->profile)
                         <img src="{{ asset('storage/' . auth()->user()->profile) }}" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Selamat Datang, Admin</span>
                     @else
                         <img src="{{ asset('assets/img/users.png') }}" alt="Profile" class="rounded-circle">
                     @endif
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Selamat Datang, Admin</span>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

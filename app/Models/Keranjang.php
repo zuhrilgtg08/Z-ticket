@@ -12,7 +12,7 @@ class Keranjang extends Model
 {
     protected $table = 'keranjangs';
     protected $guarded = ['id'];
-    protected $with = ['tiket', 'user', 'hotel'];
+    protected $with = ['tiket', 'user', 'hotel', 'pesanan'];
     use HasFactory;
 
     public function tiket()
