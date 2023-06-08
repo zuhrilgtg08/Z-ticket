@@ -66,7 +66,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ route('history.orders', auth()->user()->id) }}">
                                     <i class="bi bi-clock-history"></i> History Orders</a>
                             </li>
                         @endif

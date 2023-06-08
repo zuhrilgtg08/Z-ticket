@@ -53,8 +53,21 @@ class DashboardOrderanUserController extends Controller
      */
     public function show($id)
     {
-        $pesanan = Pesanan::findOrFail($id);
-        return view('pages.admin.dataOrderanUsers.detail', ['pesanan' => $pesanan]);
+        $data = Keranjang::with(['pesanan', 'tiket', 'hotel'])
+            ->where('pesanan_id', $id)->first();
+        $list = Keranjang::with(['pesanan', 'tiket', 'hotel'])
+            ->where('user_id', '<>', 1)->get();
+        
+        $sumHarga = 0;
+        foreach($list as $data) {
+            $sumHarga += ($data->tiket->harga * $data->quantity);
+        }
+
+        return view('pages.admin.dataOrderanUsers.detail', [
+            'data' => $data,
+            'list' => $list,
+            'sumHarga' => $sumHarga
+        ]);
     }
 
     public function exportPdf()

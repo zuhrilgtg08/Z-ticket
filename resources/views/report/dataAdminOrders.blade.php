@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Data Orders</title>
         <style>
             * {
                 font-family: DejaVu Sans, sans-serif;
