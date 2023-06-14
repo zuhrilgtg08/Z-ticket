@@ -13,9 +13,9 @@
                         <div class="row p-5">
                             <div class="mx-auto col-lg-6 order-lg-last">
                                 @if ($item->image)
-                                    <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="">
+                                    <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="tiket-img" width="500" />
                                 @else
-                                    <img class="img-fluid" src="{{ asset('assets/img/blank-tiket.webp') }}" alt="">
+                                    <img class="img-fluid" src="{{ asset('assets/img/blank-tiket.webp') }}" alt="tiket-img" />
                                 @endif
                             </div>
                             
